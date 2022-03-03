@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.widget.RemoteViews
+import java.util.*
 
 /**
  * Implementation of App Widget functionality.
@@ -29,6 +30,7 @@ class RandomWidget : AppWidgetProvider() {
     }
 
     override fun onEnabled(context: Context) {
+        // This is called when you frag the widget onScreen
         // Enter relevant functionality for when the first widget is created
     }
 
@@ -46,6 +48,7 @@ internal fun updateAppWidget(
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.random_widget)
     views.setTextViewText(R.id.appwidget_text, widgetText)
+    views.setTextViewText(R.id.tv_random, Random().nextInt().toString())
 
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)
